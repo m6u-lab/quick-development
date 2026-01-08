@@ -1,46 +1,127 @@
-#map {
-    display: flex;
-    gap: 24px;
-    align-items: flex-start;
+/* =========================
+   Base
+========================= */
+* {
+    box-sizing: border-box;
 }
 
-.activity {
+body {
+    margin: 0;
+    padding: 12px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #fafafa;
+}
+
+h1 {
+    margin-bottom: 12px;
+}
+
+/* =========================
+   Activity lane (horizontal)
+========================= */
+#map {
+    display: flex;
+    gap: 0;                       /* Activity間は密着 */
+    align-items: flex-start;      /* 高さを揃えない */
+    overflow-x: auto;
     border: 1px solid #ccc;
+}
+
+/* =========================
+   Activity column
+========================= */
+.activity {
+    flex: 0 0 280px;              /* 固定幅 */
+    background: #fff;
+    border-right: 1px solid #ccc;
     padding: 8px;
-    min-width: 260px;
+}
+
+.activity:last-child {
+    border-right: none;
 }
 
 .activity-title {
     font-weight: bold;
-    margin-bottom: 8px;
     text-align: center;
+    padding-bottom: 6px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #ddd;
 }
 
+/* =========================
+   Story lane (vertical)
+========================= */
 .stories {
     display: flex;
-    gap: 12px;
+    flex-direction: column;       /* Storyは縦 */
+    gap: 10px;
 }
 
+/* =========================
+   Story card
+========================= */
 .story {
     background: #f3f3f3;
+    border-radius: 6px;
     padding: 6px;
-    min-width: 200px;
+    height: auto;                 /* 高さは内容依存 */
 }
 
 .story-title {
     font-weight: bold;
+    font-size: 0.95em;
     margin-bottom: 6px;
 }
 
+/* =========================
+   Task lane (vertical)
+========================= */
 .tasks {
     display: flex;
     flex-direction: column;
     gap: 4px;
 }
 
+/* =========================
+   Task card
+========================= */
 .task {
     background: #fff;
     border: 1px solid #ddd;
-    padding: 4px;
-    font-size: 0.9em;
+    border-radius: 4px;
+    padding: 4px 6px;
+    font-size: 0.85em;
+
+    /* 高さ固定を完全に排除 */
+    height: auto;
+    min-height: unset;
+    align-self: flex-start;
+}
+
+/* =========================
+   Optional: priority styling
+========================= */
+.story[data-priority="must"] {
+    background: #eef5ff;
+}
+
+.story[data-priority="should"] {
+    background: #f1f8f1;
+}
+
+.story[data-priority="could"] {
+    background: #fff8ec;
+}
+
+/* =========================
+   Scrollbar (optional)
+========================= */
+#map::-webkit-scrollbar {
+    height: 6px;
+}
+
+#map::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 3px;
 }
