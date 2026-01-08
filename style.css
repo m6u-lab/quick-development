@@ -17,12 +17,11 @@ h1 {
 }
 
 /* =========================
-   Activity lane (horizontal)
+   Activity lane
 ========================= */
 #map {
     display: flex;
-    gap: 0;                       /* Activity間は密着 */
-    align-items: flex-start;      /* 高さを揃えない */
+    align-items: flex-start;
     overflow-x: auto;
     border: 1px solid #ccc;
 }
@@ -31,7 +30,7 @@ h1 {
    Activity column
 ========================= */
 .activity {
-    flex: 0 0 280px;              /* 固定幅 */
+    flex: 0 0 280px;
     background: #fff;
     border-right: 1px solid #ccc;
     padding: 8px;
@@ -50,11 +49,11 @@ h1 {
 }
 
 /* =========================
-   Story lane (vertical)
+   Story lane
 ========================= */
 .stories {
     display: flex;
-    flex-direction: column;       /* Storyは縦 */
+    flex-direction: column;
     gap: 10px;
 }
 
@@ -64,64 +63,12 @@ h1 {
 .story {
     background: #f3f3f3;
     border-radius: 6px;
-    padding: 6px;
-    height: auto;                 /* 高さは内容依存 */
+    padding: 8px;
 }
 
 .story-title {
     font-weight: bold;
     font-size: 0.95em;
-    margin-bottom: 6px;
-}
-
-/* =========================
-   Task lane (vertical)
-========================= */
-.tasks {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-/* =========================
-   Task card
-========================= */
-.task {
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 4px 6px;
-    font-size: 0.85em;
-
-    /* 高さ固定を完全に排除 */
-    height: auto;
-    min-height: unset;
-    align-self: flex-start;
-}
-
-/* =========================
-   Optional: priority styling
-========================= */
-.story[data-priority="must"] {
-    background: #eef5ff;
-}
-
-.story[data-priority="should"] {
-    background: #f1f8f1;
-}
-
-.story[data-priority="could"] {
-    background: #fff8ec;
-}
-
-/* =========================
-   Scrollbar (optional)
-========================= */
-#map::-webkit-scrollbar {
-    height: 6px;
-}
-
-#map::-webkit-scrollbar-thumb {
-    background: #ccc;
-    border-radius: 3px;
+    line-height: 1.35;
+    word-break: break-word;
 }

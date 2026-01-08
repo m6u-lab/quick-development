@@ -4,25 +4,8 @@
       "title": "探索",
       "order": 1,
       "stories": [
-        {
-          "title": "商品を検索したい",
-          "order": 1,
-          "priority": "must",
-          "tasks": [
-            { "title": "検索バー入力", "order": 1 },
-            { "title": "検索結果表示", "order": 2 }
-          ]
-        },
-        {
-          "title": "商品を絞り込みたい",
-          "order": 2,
-          "priority": "should",
-          "tasks": [
-            { "title": "カテゴリ選択", "order": 1 },
-            { "title": "価格フィルター", "order": 2 },
-            { "title": "在庫ありのみ表示", "order": 3 }
-          ]
-        }
+        { "title": "商品を検索したい", "order": 1 },
+        { "title": "商品を絞り込みたい", "order": 2 }
       ]
     },
     {
@@ -30,16 +13,8 @@
       "order": 2,
       "stories": [
         {
-          "title": "商品を比較したい",
-          "order": 1,
-          "priority": "could",
-          "tasks": [
-            {
-              "title": "複数商品を比較リストに追加（このタスクはUIの折返し・高さ可変を確認するために意図的に長くしています）",
-              "order": 1
-            },
-            { "title": "比較画面を表示", "order": 2 }
-          ]
+          "title": "商品を比較したい（タイトルが長い場合の折返し・高さ可変を確認するために意図的に長くしています）",
+          "order": 1
         }
       ]
     },
@@ -47,47 +22,16 @@
       "title": "購入",
       "order": 3,
       "stories": [
-        {
-          "title": "カートに入れたい",
-          "order": 1,
-          "priority": "must",
-          "tasks": [
-            { "title": "カート追加", "order": 1 }
-          ]
-        },
-        {
-          "title": "支払いしたい",
-          "order": 2,
-          "priority": "must",
-          "tasks": [
-            { "title": "支払い方法選択", "order": 1 },
-            { "title": "住所入力", "order": 2 },
-            { "title": "決済実行", "order": 3 }
-          ]
-        }
+        { "title": "カートに入れたい", "order": 1 },
+        { "title": "支払いしたい", "order": 2 }
       ]
     },
     {
       "title": "アフター購入",
       "order": 4,
       "stories": [
-        {
-          "title": "購入履歴を確認したい",
-          "order": 1,
-          "priority": "should",
-          "tasks": []
-        },
-        {
-          "title": "返品したい",
-          "order": 2,
-          "priority": "could",
-          "tasks": [
-            { "title": "返品条件確認", "order": 1 },
-            { "title": "返品申請フォーム入力", "order": 2 },
-            { "title": "返送手続き案内表示", "order": 3 },
-            { "title": "返金ステータス確認", "order": 4 }
-          ]
-        }
+        { "title": "購入履歴を確認したい", "order": 1 },
+        { "title": "返品したい", "order": 2 }
       ]
     },
     {

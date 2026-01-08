@@ -5,10 +5,9 @@ async function loadAndRender() {
     const map = document.getElementById("map");
     map.innerHTML = "";
 
-    // Activity order でソート
     data.activities
         .sort((a, b) => a.order - b.order)
-        .forEach(activity => {
+        .forEach((activity) => {
             const activityEl = document.createElement("div");
             activityEl.className = "activity";
 
@@ -22,28 +21,15 @@ async function loadAndRender() {
 
             activity.stories
                 .sort((a, b) => a.order - b.order)
-                .forEach(story => {
+                .forEach((story) => {
                     const storyEl = document.createElement("div");
                     storyEl.className = "story";
 
                     const storyTitle = document.createElement("div");
                     storyTitle.className = "story-title";
                     storyTitle.textContent = story.title;
+
                     storyEl.appendChild(storyTitle);
-
-                    const tasksEl = document.createElement("div");
-                    tasksEl.className = "tasks";
-
-                    story.tasks
-                        .sort((a, b) => a.order - b.order)
-                        .forEach(task => {
-                            const taskEl = document.createElement("div");
-                            taskEl.className = "task";
-                            taskEl.textContent = task.title;
-                            tasksEl.appendChild(taskEl);
-                        });
-
-                    storyEl.appendChild(tasksEl);
                     storiesEl.appendChild(storyEl);
                 });
 
