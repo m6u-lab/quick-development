@@ -12,29 +12,43 @@ const data = {
     ]
 };
 
-const container = document.getElementById("map");
+const map = document.getElementById("map");
 
 data.activities.forEach(activity => {
-    const col = document.createElement("div");
-    col.className = "activity";
+    const activityEl = document.createElement("div");
+    activityEl.className = "activity";
 
-    const title = document.createElement("h2");
+    const title = document.createElement("div");
+    title.className = "activity-title";
     title.textContent = activity.name;
-    col.appendChild(title);
+    activityEl.appendChild(title);
+
+    const storiesEl = document.createElement("div");
+    storiesEl.className = "stories";
 
     activity.user_stories.forEach(us => {
-        const story = document.createElement("div");
-        story.className = "story";
-        story.textContent = us.story;
-        col.appendChild(story);
+        const storyEl = document.createElement("div");
+        storyEl.className = "story";
+
+        const storyTitle = document.createElement("div");
+        storyTitle.className = "story-title";
+        storyTitle.textContent = us.story;
+        storyEl.appendChild(storyTitle);
+
+        const tasksEl = document.createElement("div");
+        tasksEl.className = "tasks";
 
         us.tasks.forEach(task => {
-            const t = document.createElement("div");
-            t.className = "task";
-            t.textContent = task;
-            col.appendChild(t);
+            const taskEl = document.createElement("div");
+            taskEl.className = "task";
+            taskEl.textContent = task;
+            tasksEl.appendChild(taskEl);
         });
+
+        storyEl.appendChild(tasksEl);
+        storiesEl.appendChild(storyEl);
     });
 
-    container.appendChild(col);
+    activityEl.appendChild(storiesEl);
+    map.appendChild(activityEl);
 });

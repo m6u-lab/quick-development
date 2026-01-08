@@ -1,28 +1,46 @@
-body {
-    font-family: sans-serif;
-}
-
 #map {
     display: flex;
-    gap: 16px;
+    gap: 24px;
+    align-items: flex-start;
 }
 
 .activity {
     border: 1px solid #ccc;
     padding: 8px;
-    min-width: 200px;
+    min-width: 260px;
+}
+
+.activity-title {
+    font-weight: bold;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.stories {
+    display: flex;
+    gap: 12px;
 }
 
 .story {
-    background: #eee;
-    margin-top: 8px;
-    padding: 4px;
+    background: #f3f3f3;
+    padding: 6px;
+    min-width: 200px;
+}
+
+.story-title {
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.tasks {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
 .task {
-    background: #fafafa;
-    margin-left: 8px;
-    margin-top: 4px;
+    background: #fff;
+    border: 1px solid #ddd;
     padding: 4px;
     font-size: 0.9em;
 }
