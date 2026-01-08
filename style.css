@@ -1,0 +1,28 @@
+body {
+    font-family: sans-serif;
+}
+
+#map {
+    display: flex;
+    gap: 16px;
+}
+
+.activity {
+    border: 1px solid #ccc;
+    padding: 8px;
+    min-width: 200px;
+}
+
+.story {
+    background: #eee;
+    margin-top: 8px;
+    padding: 4px;
+}
+
+.task {
+    background: #fafafa;
+    margin-left: 8px;
+    margin-top: 4px;
+    padding: 4px;
+    font-size: 0.9em;
+}

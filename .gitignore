@@ -1,0 +1,33 @@
+# ===== OS / Editor =====
+.DS_Store
+Thumbs.db
+
+# IntelliJ / PyCharm / VSCode
+.idea/
+*.iml
+.vscode/
+
+# ===== Python =====
+__pycache__/
+*.py[cod]
+.venv/
+.env
+
+# ===== Node (もし使うなら) =====
+node_modules/
+
+# ===== Logs =====
+*.log
+
+# ===== Test / Coverage =====
+.coverage
+htmlcov/
+
+# ===== Audio / Generated Assets =====
+*.wav
+*.mp3
+*.ogg
+
+# ===== Local config / secrets =====
+config.local.*
+secrets.*
