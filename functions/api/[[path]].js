@@ -1,9 +1,8 @@
 export async function onRequest({ request, env }) {
-    const url = new URL(request.url);
+    if (!env.API) {
+        return new Response("Service binding API not found", { status: 500 });
+    }
 
-    // Pages の /api/xxx → Worker の /api/xxx に転送
-    const workerUrl = new URL(url.pathname, "http://worker");
-    workerUrl.search = url.search;
-
-    return env.API.fetch(workerUrl.toString(), request);
+    const res = await env.API.fetch(request);
+    return res;
 }
