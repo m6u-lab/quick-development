@@ -1,20 +1,24 @@
-export default {
-    async fetch(request, env) {
-        const url = new URL(request.url);
+export default async function fetch(request, env) {
+    const url = new URL(request.url);
 
-        // POST /api/create-issue 以外は拒否
-        if (request.method !== "POST" || url.pathname !== "/api/create-issue") {
-            return new Response("Not Found", { status: 404 });
+    console.log("REQ", request.method, url.pathname);
+
+    if (request.method !== "POST" || url.pathname !== "/api/create-issue") {
+        console.log("REJECTED");
+        return new Response("Not Found", { status: 404 });
+    }
+
+    try {
+        const payload = await request.json();
+        console.log("PAYLOAD", payload);
+
+        const { storyId, title, activity, order } = payload;
+
+        if (!storyId || !title) {
+            return new Response("Invalid payload", { status: 400 });
         }
 
-        try {
-            const { storyId, title, activity, order } = await request.json();
-
-            if (!storyId || !title) {
-                return new Response("Invalid payload", { status: 400 });
-            }
-
-            const issueBody = `
+        const issueBody = `
 ## Story
 ${title}
 
@@ -27,34 +31,48 @@ ${order}
 <!-- usm-story-id: ${storyId} -->
 `;
 
-            const ghRes = await fetch(
-                `https://api.github.com/repos/${env.GITHUB_OWNER}/${env.GITHUB_REPO}/issues`,
-                {
-                    method: "POST",
-                    headers: {
-                        Authorization: `Bearer ${env.GITHUB_TOKEN}`,
-                        Accept: "application/vnd.github+json",
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        title: `[Story] ${title}`,
-                        body: issueBody
-                    })
-                }
-            );
+        console.log(
+            "CALL GITHUB",
+            `${env.GITHUB_OWNER}/${env.GITHUB_REPO}`
+        );
 
-            const text = await ghRes.text();
-
-            if (!ghRes.ok) {
-                return new Response(text, { status: 500 });
+        const ghRes = await fetch(
+            `https://api.github.com/repos/${env.GITHUB_OWNER}/${env.GITHUB_REPO}/issues`,
+            {
+                method: "POST",
+                headers: {
+                    Authorization: `Bearer ${env.GITHUB_TOKEN}`,
+                    Accept: "application/vnd.github+json",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    title: `[Story] ${title}`,
+                    body: issueBody
+                })
             }
+        );
 
-            return new Response(text, {
-                headers: { "Content-Type": "application/json" }
-            });
+        console.log("GITHUB STATUS", ghRes.status);
 
-        } catch (err) {
-            return new Response(String(err), { status: 500 });
+        const text = await ghRes.text();
+        console.log("GITHUB BODY", text);
+
+        if (!ghRes.ok) {
+            return new Response(
+                JSON.stringify({
+                    status: ghRes.status,
+                    body: text
+                }),
+                { status: 500, headers: { "Content-Type": "application/json" } }
+            );
         }
+
+        return new Response(text, {
+            headers: { "Content-Type": "application/json" }
+        });
+
+    } catch (err) {
+        console.log("EXCEPTION", err);
+        return new Response(String(err), { status: 500 });
     }
-};
+}
