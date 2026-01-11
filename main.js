@@ -40,7 +40,7 @@ async function loadAndRender() {
                             btn.disabled = true;
                             btn.textContent = "Creating...";
 
-                            const res = await fetch("/api/create-issue", {
+                            const res = await fetch("https://quick-development-worker.a8be15-cloudflare.workers.dev/api/create-issue", {
                                 method: "POST",
                                 headers: { "Content-Type": "application/json" },
                                 body: JSON.stringify({
